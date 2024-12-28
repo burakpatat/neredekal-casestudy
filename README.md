@@ -1,7 +1,7 @@
-# neredekal-casestudy
+neredekal-casestudy
 ---
 
-## **Solution Structure**
+**Solution Structure**
 
 ```plaintext
 neredekalcase
