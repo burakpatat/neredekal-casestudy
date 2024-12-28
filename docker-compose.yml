@@ -1,0 +1,135 @@
+version: '3.9'
+services:
+  # PostgreSQL (HotelService DB)
+  postgres:
+    image: postgres:15
+    container_name: hotelservice-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: hotel_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # MongoDB (ReportService DB)
+  mongodb:
+    image: mongo:6
+    container_name: reportservice-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: reportservice-rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    ports:
+      - "5672:5672"  # AMQP
+      - "15672:15672" # Web panel (Management Console)
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  # Elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
+    container_name: elk-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+
+  # Logstash (Log verilerini almak ve Elasticsearch'e iletmek)
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.10.2
+    container_name: elk-logstash
+    environment:
+      LS_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ports:
+      - "5044:5044" # Log Entry
+    volumes:
+      - ./logstash/config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+
+  # Kibana (Veri görselleştirme ve analiz)
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.10.2
+    container_name: elk-kibana
+    environment:
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
+    ports:
+      - "5601:5601"
+
+  # Gateway (API Gateway)
+  gateway:
+    image: src/Gateway/Gateway.API/Dockerfile
+    container_name: hotelreport-gateway
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - hotelservice
+      - reportservice
+    networks:
+      - hotelreport_network
+
+  # Hotel Service
+  hotelservice:
+    image: src/HotelService/HotelService.API/Dockerfile
+    container_name: hotelservice-api
+    restart: always
+    ports:
+      - "5000:80" 
+    networks:
+      - hotelreport_network
+    depends_on:
+      - postgres
+
+  # Report Service
+  reportservice:
+    image: src/ReportService/ReportService.API/Dockerfile
+    container_name: reportservice-api
+    restart: always
+    ports:
+      - "5001:80" 
+    networks:
+      - hotelreport_network
+    depends_on:
+      - mongodb
+      - rabbitmq
+
+# WebUI (Blazor WebAssembly - Nginx)
+  webui:
+    build:
+      context: ./WebUI
+    container_name: hotelreport-webui
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - hotelreport_network
+    depends_on:
+      - gateway
+
+networks:
+  hotelreport_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  mongo_data:
+  rabbitmq_data:
+  es_data:

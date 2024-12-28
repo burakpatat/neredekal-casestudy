@@ -1,0 +1,12 @@
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\bin\Debug\net9.0\ReportService.Shared.deps.json
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\bin\Debug\net9.0\ReportService.Shared.dll
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\bin\Debug\net9.0\ReportService.Shared.pdb
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\obj\Debug\net9.0\ReportService.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\obj\Debug\net9.0\ReportService.Shared.AssemblyInfoInputs.cache
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\obj\Debug\net9.0\ReportService.Shared.AssemblyInfo.cs
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\obj\Debug\net9.0\ReportService.Shared.csproj.CoreCompileInputs.cache
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\obj\Debug\net9.0\ReportService.Shared.sourcelink.json
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\obj\Debug\net9.0\ReportService.Shared.dll
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\obj\Debug\net9.0\refint\ReportService.Shared.dll
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\obj\Debug\net9.0\ReportService.Shared.pdb
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Shared\obj\Debug\net9.0\ref\ReportService.Shared.dll

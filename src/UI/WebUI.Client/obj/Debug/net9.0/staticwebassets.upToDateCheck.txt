@@ -1,0 +1,4 @@
+D:\Github\neredekal-casestudy\src\UI\WebUI.Client\wwwroot\appsettings.Development.json
+D:\Github\neredekal-casestudy\src\UI\WebUI.Client\wwwroot\appsettings.json
+wwwroot\appsettings.Development.json
+wwwroot\appsettings.json

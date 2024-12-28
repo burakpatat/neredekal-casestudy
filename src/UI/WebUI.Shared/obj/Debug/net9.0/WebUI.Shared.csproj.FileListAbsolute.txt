@@ -1,0 +1,12 @@
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\bin\Debug\net9.0\WebUI.Shared.deps.json
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\bin\Debug\net9.0\WebUI.Shared.dll
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\bin\Debug\net9.0\WebUI.Shared.pdb
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\obj\Debug\net9.0\WebUI.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\obj\Debug\net9.0\WebUI.Shared.AssemblyInfoInputs.cache
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\obj\Debug\net9.0\WebUI.Shared.AssemblyInfo.cs
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\obj\Debug\net9.0\WebUI.Shared.csproj.CoreCompileInputs.cache
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\obj\Debug\net9.0\WebUI.Shared.sourcelink.json
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\obj\Debug\net9.0\WebUI.Shared.dll
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\obj\Debug\net9.0\refint\WebUI.Shared.dll
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\obj\Debug\net9.0\WebUI.Shared.pdb
+D:\Github\neredekal-casestudy\src\UI\WebUI.Shared\obj\Debug\net9.0\ref\WebUI.Shared.dll
