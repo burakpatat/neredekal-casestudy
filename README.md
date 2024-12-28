@@ -1,0 +1,1 @@
+# neredekal-casestudy
