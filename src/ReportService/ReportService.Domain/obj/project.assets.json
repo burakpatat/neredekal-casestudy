@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "SharedKernel/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/SharedKernel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SharedKernel.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "SharedKernel/1.0.0": {
+      "type": "project",
+      "path": "../../../common/SharedKernel/SharedKernel.csproj",
+      "msbuildProject": "../../../common/SharedKernel/SharedKernel.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "SharedKernel >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Burak Patat\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Github\\neredekal-casestudy\\common\\SharedKernel\\SharedKernel.csproj": {
+              "projectPath": "D:\\Github\\neredekal-casestudy\\common\\SharedKernel\\SharedKernel.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReportService.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99cc1618bfd524cb843c2d92aa68ceac9cce7cbe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10e515823120f613a90d418294e1509c04de7e8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReportService.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReportService.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

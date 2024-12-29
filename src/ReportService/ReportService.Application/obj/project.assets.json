@@ -1,11 +1,82 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "EventBus/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/EventBus.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EventBus.dll": {}
+        }
+      },
+      "ReportService.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "SharedKernel": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ReportService.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ReportService.Domain.dll": {}
+        }
+      },
+      "ReportService.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "ReportService.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ReportService.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ReportService.Infrastructure.dll": {}
+        }
+      },
+      "SharedKernel/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/SharedKernel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SharedKernel.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "EventBus/1.0.0": {
+      "type": "project",
+      "path": "../../../common/EventBus/EventBus.csproj",
+      "msbuildProject": "../../../common/EventBus/EventBus.csproj"
+    },
+    "ReportService.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ReportService.Domain/ReportService.Domain.csproj",
+      "msbuildProject": "../ReportService.Domain/ReportService.Domain.csproj"
+    },
+    "ReportService.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../ReportService.Infrastructure/ReportService.Infrastructure.csproj",
+      "msbuildProject": "../ReportService.Infrastructure/ReportService.Infrastructure.csproj"
+    },
+    "SharedKernel/1.0.0": {
+      "type": "project",
+      "path": "../../../common/SharedKernel/SharedKernel.csproj",
+      "msbuildProject": "../../../common/SharedKernel/SharedKernel.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "EventBus >= 1.0.0",
+      "ReportService.Infrastructure >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Burak Patat\\.nuget\\packages\\": {},
@@ -38,7 +109,14 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Github\\neredekal-casestudy\\common\\EventBus\\EventBus.csproj": {
+              "projectPath": "D:\\Github\\neredekal-casestudy\\common\\EventBus\\EventBus.csproj"
+            },
+            "D:\\Github\\neredekal-casestudy\\src\\ReportService\\ReportService.Infrastructure\\ReportService.Infrastructure.csproj": {
+              "projectPath": "D:\\Github\\neredekal-casestudy\\src\\ReportService\\ReportService.Infrastructure\\ReportService.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

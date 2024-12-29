@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\common\EventBus\EventBus.csproj" />
+    <ProjectReference Include="..\HotelService.Infrastructure\HotelService.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

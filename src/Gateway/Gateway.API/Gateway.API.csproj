@@ -18,4 +18,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\HotelService\HotelService.API\HotelService.API.csproj" />
+    <ProjectReference Include="..\..\ReportService\ReportService.API\ReportService.API.csproj" />
+  </ItemGroup>
+
 </Project>
