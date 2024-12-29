@@ -33,3 +33,15 @@ D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\obj\Debug\net9
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\obj\Debug\net9.0\ReportService.API.pdb
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\obj\Debug\net9.0\ReportService.API.genruntimeconfig.cache
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\obj\Debug\net9.0\ref\ReportService.API.dll
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\EventBus.dll
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\ReportService.Application.dll
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\ReportService.Domain.dll
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\ReportService.Infrastructure.dll
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\ReportService.Shared.dll
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\SharedKernel.dll
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\ReportService.Application.pdb
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\ReportService.Shared.pdb
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\EventBus.pdb
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\ReportService.Domain.pdb
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\ReportService.Infrastructure.pdb
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.API\bin\Debug\net9.0\SharedKernel.pdb

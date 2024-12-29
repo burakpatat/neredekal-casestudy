@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReportService.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10e515823120f613a90d418294e1509c04de7e8d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+faa2631b84220daf035903f066dc2b704fcea674")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReportService.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReportService.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
