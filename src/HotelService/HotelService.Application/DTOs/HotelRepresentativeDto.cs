@@ -3,8 +3,7 @@ namespace HotelService.Application.DTOs
 {
     public class HotelRepresentativeDto
     {
-        public Guid Id { get; set; }
-        public string FullName { get; set; }
-        public Guid HotelId { get; set; }
+        public string Name { get; set; }
+        public string SurName { get; set; }
     }
 }

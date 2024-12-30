@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HotelService.Application.DTOs;
+using HotelService.Application.Mediator.Commands;
 using HotelService.Domain.Entities;
 
 namespace HotelService.Application.Mapping
@@ -15,7 +16,8 @@ namespace HotelService.Application.Mapping
 
             // HotelRepresentative entity -> HotelRepresentativeDto
             CreateMap<HotelRepresentative, HotelRepresentativeDto>()
-                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.SurName, opt => opt.MapFrom(src => src.LastName));
 
             // HotelContactInfo entity -> HotelContactInfoDto
             CreateMap<HotelContactInfo, HotelContactInfoDto>();

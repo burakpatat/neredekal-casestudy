@@ -9,7 +9,9 @@ namespace HotelService.Application.Services
         Task<bool> DeleteHotelAsync(Guid id);
         Task<HotelContactInfoDto> AddHotelContactInfoAsync(Guid hotelId, HotelContactInfoDto contactInfo);
         Task<bool> RemoveHotelContactInfoAsync(Guid contactInfoId);
+        Task<HotelRepresentativeDto> AddHotelRepresentativeAsync(Guid hotelId, HotelRepresentativeDto representative);
         Task<IEnumerable<HotelRepresentativeDto>> GetHotelRepresentativesAsync(Guid hotelId);
         Task<HotelDto> GetHotelDetailsAsync(Guid hotelId);
     }
+
 }

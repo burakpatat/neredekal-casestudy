@@ -1,7 +1,10 @@
+using HotelService.Application;
+using HotelService.Application.Services;
 using HotelService.Infrastructure.Persistence;
 using HotelService.Infrastructure.Repository;
 using HotelService.Infrastructure.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,9 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+builder.Services.AddApplicationService(builder.Configuration);
+
+builder.Services.AddScoped<IHotelService, HotelService.Application.Services.HotelService>();
 
 var app = builder.Build();
 
@@ -24,6 +30,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference(options =>
+    {
+        options
+            .WithTitle("Neredekal Case - HotelService")
+            .WithTheme(ScalarTheme.Moon)
+            .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
+    });
 }
 
 using (var scope = app.Services.CreateScope())

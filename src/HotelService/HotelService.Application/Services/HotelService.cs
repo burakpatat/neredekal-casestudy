@@ -16,6 +16,19 @@ namespace HotelService.Application.Services
 
         public async Task<HotelDto> CreateHotelAsync(CreateHotelCommand command)
         {
+            var hotelDto = await _mediator.Send(command);
+            return hotelDto;
+        }
+
+        public async Task<HotelRepresentativeDto> AddHotelRepresentativeAsync(Guid hotelId, HotelRepresentativeDto representative)
+        {
+            var command = new AddHotelRepresentativeCommand
+            {
+                HotelId = hotelId,
+                Name = representative.Name,
+                SurName = representative.SurName
+            };
+
             return await _mediator.Send(command);
         }
 
@@ -54,5 +67,6 @@ namespace HotelService.Application.Services
             return await _mediator.Send(query);
         }
     }
+
 
 }

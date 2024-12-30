@@ -21,12 +21,46 @@ namespace HotelService.Application.Mediator.Commands
 
         public async Task<HotelDto> Handle(CreateHotelCommand request, CancellationToken cancellationToken)
         {
+            var hotelEntity = new Hotel
+            {
+                Name = request.Name
+            };
+
             var hotelRepository = _unitOfWork.GetRepository<Hotel>();
-
-            var hotelEntity = _mapper.Map<Hotel>(request);
-
             await hotelRepository.CreateAsync(hotelEntity);
             await _unitOfWork.SaveChangesAsync();
+
+            if (request.Representatives != null && request.Representatives.Any())
+            {
+                foreach (var representative in request.Representatives)
+                {
+                    var representativeEntity = new HotelRepresentative
+                    {
+                        FirstName = representative.Name,
+                        LastName = representative.SurName,
+                        HotelId = hotelEntity.Id
+                    };
+
+                    await _unitOfWork.GetRepository<HotelRepresentative>().CreateAsync(representativeEntity);
+                }
+                await _unitOfWork.SaveChangesAsync();
+            }
+
+            if (request.ContactInfos != null && request.ContactInfos.Any())
+            {
+                foreach (var contactInfo in request.ContactInfos)
+                {
+                    var contactInfoEntity = new HotelContactInfo
+                    {
+                        Type = contactInfo.Type,
+                        Value = contactInfo.Value,
+                        HotelId = hotelEntity.Id
+                    };
+
+                    await _unitOfWork.GetRepository<HotelContactInfo>().CreateAsync(contactInfoEntity);
+                }
+                await _unitOfWork.SaveChangesAsync();
+            }
 
             return _mapper.Map<HotelDto>(hotelEntity);
         }
