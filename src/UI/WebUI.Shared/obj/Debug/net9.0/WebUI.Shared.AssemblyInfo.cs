@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebUI.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99cc1618bfd524cb843c2d92aa68ceac9cce7cbe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae346d677f04753a228d930b5c3f76c15090ac04")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebUI.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebUI.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

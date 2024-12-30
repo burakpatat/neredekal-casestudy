@@ -1,5 +1,5 @@
 ﻿
-namespace HotelService.Domain.Entities
+namespace SharedKernel.Enums
 {
     public enum HotelContactInfoType
     {

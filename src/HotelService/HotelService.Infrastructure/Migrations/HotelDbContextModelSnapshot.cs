@@ -31,10 +31,6 @@ namespace HotelService.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");

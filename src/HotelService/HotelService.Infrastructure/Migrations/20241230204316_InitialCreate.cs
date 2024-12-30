@@ -17,7 +17,6 @@ namespace HotelService.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Location = table.Column<string>(type: "text", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HotelService.Infrastructure.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    [Migration("20241229234103_InitialCreate")]
+    [Migration("20241230204316_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -33,10 +33,6 @@ namespace HotelService.Infrastructure.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()

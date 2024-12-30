@@ -1,4 +1,6 @@
 using HotelService.Infrastructure.Persistence;
+using HotelService.Infrastructure.Repository;
+using HotelService.Infrastructure.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,10 @@ builder.Services.AddOpenApi();
 
 //service registiration
 builder.Services.AddInfrastructureServices(builder.Configuration);
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
 
 var app = builder.Build();
 
