@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\HotelService\HotelService.API\HotelService.API.csproj" />
     <ProjectReference Include="..\..\..\src\HotelService\HotelService.Application\HotelService.Application.csproj" />
     <ProjectReference Include="..\..\..\src\HotelService\HotelService.Domain\HotelService.Domain.csproj" />
   </ItemGroup>

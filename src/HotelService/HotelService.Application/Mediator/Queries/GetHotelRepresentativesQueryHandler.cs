@@ -3,6 +3,7 @@ using HotelService.Application.DTOs;
 using HotelService.Domain.Entities;
 using HotelService.Infrastructure.UnitOfWork;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelService.Application.Mediator.Queries
 {
@@ -21,10 +22,13 @@ namespace HotelService.Application.Mediator.Queries
         {
             var hotelRepository = _unitOfWork.GetRepository<Hotel>();
 
-            var hotelEntity = await hotelRepository.GetByIdAsync(request.HotelId);
+            var hotelEntity = await hotelRepository.Table
+            .Include(h => h.Representatives).FirstOrDefaultAsync(h => h.Id == request.HotelId, cancellationToken);
+
             if (hotelEntity == null) throw new Exception("Hotel not found.");
 
-            return _mapper.Map<List<HotelRepresentativeDto>>(hotelEntity.Representatives);
+            var representatives = hotelEntity.Representatives;
+            return _mapper.Map<List<HotelRepresentativeDto>>(representatives);
         }
     }
 

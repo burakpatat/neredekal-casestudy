@@ -1,6 +1,8 @@
 ﻿using HotelService.Domain.Entities;
 using HotelService.Infrastructure.UnitOfWork;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using SharedKernel.Enums;
 
 namespace HotelService.Application.Mediator.Commands
 {
@@ -15,13 +17,18 @@ namespace HotelService.Application.Mediator.Commands
 
         public async Task<bool> Handle(RemoveHotelContactInfoCommand request, CancellationToken cancellationToken)
         {
-            var contactInfoRepository = _unitOfWork.GetRepository<HotelContactInfo>();
+            var hotelRepository = _unitOfWork.GetRepository<Hotel>();
 
-            var contactInfo = await contactInfoRepository.GetByIdAsync(request.ContactInfoId);
-            if (contactInfo == null) return false;
+            var query = from h in hotelRepository.Table.Include(h => h.ContactInfos)
+                        where h.Id == request.HotelId
+                        from ci in h.ContactInfos
+                        where ci.Type == (HotelContactInfoType)request.Type
+                        select new { Hotel = h, ContactInfo = ci };
 
-            await contactInfoRepository.RemoveAsync(contactInfo);
+            var result = await query.FirstOrDefaultAsync(cancellationToken);
+            if (result == null) return false;
 
+            result.Hotel.ContactInfos.Remove(result.ContactInfo);
             await _unitOfWork.SaveChangesAsync();
 
             return true;

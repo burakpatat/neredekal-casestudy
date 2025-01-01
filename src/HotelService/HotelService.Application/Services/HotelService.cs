@@ -49,9 +49,9 @@ namespace HotelService.Application.Services
             return await _mediator.Send(command);
         }
 
-        public async Task<bool> RemoveHotelContactInfoAsync(Guid contactInfoId)
+        public async Task<bool> RemoveHotelContactInfoAsync(Guid hotelId, int contactInfoType)
         {
-            var command = new RemoveHotelContactInfoCommand { ContactInfoId = contactInfoId };
+            var command = new RemoveHotelContactInfoCommand { HotelId = hotelId, Type = contactInfoType };
             return await _mediator.Send(command);
         }
 
@@ -61,9 +61,15 @@ namespace HotelService.Application.Services
             return await _mediator.Send(query);
         }
 
-        public async Task<HotelDto> GetHotelDetailsAsync(Guid hotelId)
+        public async Task<HotelDto> GetHotelDetailByIdAsync(Guid hotelId)
         {
-            var query = new GetHotelDetailsQuery { HotelId = hotelId };
+            var query = new GetHotelDetailsQueryById { HotelId = hotelId };
+            return await _mediator.Send(query);
+        }
+
+        public async Task<List<HotelDto>> GetHotelDetailsAsync()
+        {
+            var query = new GetHotelDetailsQuery();
             return await _mediator.Send(query);
         }
     }

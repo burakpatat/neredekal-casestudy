@@ -48,8 +48,6 @@ namespace HotelService.UnitTest.Application.CQRS
 
             var contactInfoDto = new HotelContactInfoDto
             {
-                Id = contactInfoEntity.Id,
-                HotelId = command.HotelId,
                 Type = command.Type,
                 Value = command.Value
             };

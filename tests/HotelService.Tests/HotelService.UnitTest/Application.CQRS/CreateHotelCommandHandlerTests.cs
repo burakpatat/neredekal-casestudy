@@ -24,54 +24,79 @@ namespace HotelService.UnitTest.Application.CQRS
         }
 
         [Fact]
-        public async Task Handle_Should_CreateHotel_And_ReturnHotelDto()
+        public async Task Handle_Should_CreateHotel_WithRepresentativesAndContactInfos_AndReturnHotelDto()
         {
             // Arrange
             var command = new CreateHotelCommand
             {
                 Name = "NeredeKal Hotel",
                 Representatives = new List<HotelRepresentativeDto>
-            {
-                new HotelRepresentativeDto { FullName = "Burak Patat" }
-            },
+                {
+                    new HotelRepresentativeDto { Name = "Burak", SurName = "Patat" }
+                },
                 ContactInfos = new List<HotelContactInfoDto>
-            {
-                new HotelContactInfoDto { Type = HotelContactInfoType.Email, Value = "test@neredekal.com" },
-                new HotelContactInfoDto { Type = HotelContactInfoType.Location, Value = "Istanbul" }
-            }
+                {
+                    new HotelContactInfoDto { Type = HotelContactInfoType.Email, Value = "test@neredekal.com" },
+                    new HotelContactInfoDto { Type = HotelContactInfoType.Location, Value = "Istanbul" }
+                }
             };
 
             var hotelEntity = new Hotel
             {
                 Id = Guid.NewGuid(),
-                Name = "NeredeKal Hotel"
+                Name = command.Name
             };
 
             var hotelDto = new HotelDto
             {
                 Id = hotelEntity.Id,
-                Name = "NeredeKal Hotel"
+                Name = hotelEntity.Name
             };
 
-            var repositoryMock = new Mock<IRepository<Hotel>>();
-            repositoryMock.Setup(r => r.CreateAsync(It.IsAny<Hotel>())).Returns(Task.CompletedTask);
-            _unitOfWorkMock.Setup(u => u.GetRepository<Hotel>()).Returns(repositoryMock.Object);
-            _mapperMock.Setup(m => m.Map<Hotel>(command)).Returns(hotelEntity);
-            _mapperMock.Setup(m => m.Map<HotelDto>(hotelEntity)).Returns(hotelDto);
+            var representativeEntity = new HotelRepresentative
+            {
+                HotelId = hotelEntity.Id,
+                FirstName = command.Representatives.First().Name,
+                LastName = command.Representatives.First().SurName
+            };
+
+            var contactInfoEntities = command.ContactInfos.Select(c => new HotelContactInfo
+            {
+                HotelId = hotelEntity.Id,
+                Type = c.Type,
+                Value = c.Value
+            }).ToList();
+
+            var hotelRepositoryMock = new Mock<IRepository<Hotel>>();
+            var representativeRepositoryMock = new Mock<IRepository<HotelRepresentative>>();
+            var contactInfoRepositoryMock = new Mock<IRepository<HotelContactInfo>>();
+
+            hotelRepositoryMock.Setup(r => r.CreateAsync(It.IsAny<Hotel>())).Returns(Task.CompletedTask);
+            hotelRepositoryMock.Setup(r => r.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(hotelEntity);
+
+            representativeRepositoryMock.Setup(r => r.CreateAsync(It.IsAny<HotelRepresentative>())).Returns(Task.CompletedTask);
+            contactInfoRepositoryMock.Setup(r => r.CreateAsync(It.IsAny<HotelContactInfo>())).Returns(Task.CompletedTask);
+
+            _unitOfWorkMock.Setup(u => u.GetRepository<Hotel>()).Returns(hotelRepositoryMock.Object);
+            _unitOfWorkMock.Setup(u => u.GetRepository<HotelRepresentative>()).Returns(representativeRepositoryMock.Object);
+            _unitOfWorkMock.Setup(u => u.GetRepository<HotelContactInfo>()).Returns(contactInfoRepositoryMock.Object);
+
+            _mapperMock.Setup(m => m.Map<HotelDto>(It.IsAny<Hotel>())).Returns(hotelDto);
 
             // Act
             var result = await _handler.Handle(command, CancellationToken.None);
 
             // Assert
             Assert.NotNull(result);
+            Assert.Equal(hotelDto.Id, result.Id);
             Assert.Equal(hotelDto.Name, result.Name);
 
-            repositoryMock.Verify(r => r.CreateAsync(It.IsAny<Hotel>()), Times.Once);
-            _unitOfWorkMock.Verify(u => u.SaveChangesAsync(), Times.Once);
-            _mapperMock.Verify(m => m.Map<Hotel>(command), Times.Once);
-            _mapperMock.Verify(m => m.Map<HotelDto>(hotelEntity), Times.Once);
+            hotelRepositoryMock.Verify(r => r.CreateAsync(It.IsAny<Hotel>()), Times.Once);
+            representativeRepositoryMock.Verify(r => r.CreateAsync(It.IsAny<HotelRepresentative>()), Times.Once);
+            contactInfoRepositoryMock.Verify(r => r.CreateAsync(It.IsAny<HotelContactInfo>()), Times.Exactly(command.ContactInfos.Count));
+
+            _mapperMock.Verify(m => m.Map<HotelDto>(It.IsAny<Hotel>()), Times.Once);
         }
+
     }
-
-
 }

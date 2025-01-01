@@ -3,6 +3,7 @@ using HotelService.Application.Mediator.Commands;
 using HotelService.Application.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SharedKernel.Enums;
 
 namespace HotelService.API.Controllers
 {
@@ -22,7 +23,7 @@ namespace HotelService.API.Controllers
         public async Task<IActionResult> CreateHotel([FromBody] CreateHotelCommand command)
         {
             var result = await _hotelService.CreateHotelAsync(command);
-            return CreatedAtAction(nameof(GetHotelDetails), new { hotelId = result.Id }, result);
+            return CreatedAtAction(nameof(GetHotelDetailById), new { hotelId = result.Id }, result);
         }
 
         // Oteli silmek için
@@ -44,13 +45,22 @@ namespace HotelService.API.Controllers
         }
 
         // Otel iletişim bilgisini silmek için
-        [HttpDelete("contact-info/{contactInfoId:guid}")]
-        public async Task<IActionResult> RemoveContactInfo(Guid contactInfoId)
+        [HttpDelete("contact-info/{hotelId:guid}/{contactInfoType:int}")]
+        public async Task<IActionResult> RemoveContactInfo(Guid hotelId, int contactInfoType)
         {
-            var result = await _hotelService.RemoveHotelContactInfoAsync(contactInfoId);
+            var result = await _hotelService.RemoveHotelContactInfoAsync(hotelId, contactInfoType);
             if (!result)
                 return NotFound();
-            return NoContent();
+
+            string message = (HotelContactInfoType)contactInfoType switch
+            {
+                HotelContactInfoType.PhoneNumber => "Telefon Numarası Bilgisi Silindi.",
+                HotelContactInfoType.Email => "Email Bilgisi Silindi.",
+                HotelContactInfoType.Location => "Lokasyon Bilgisi Silindi",
+                _ => "İletişim Bilgisi Silindi."
+            };
+
+            return Ok(new {Message = message, RemoveStatus = true });
         }
 
         // Otel yetkililerini eklemek için
@@ -74,13 +84,23 @@ namespace HotelService.API.Controllers
             return Ok(result);
         }
 
-        // Otelin detaylarını almak için
+        // Otelin detaylarını tekil almak için
         [HttpGet("{hotelId:guid}")]
-        public async Task<IActionResult> GetHotelDetails(Guid hotelId)
+        public async Task<IActionResult> GetHotelDetailById(Guid hotelId)
         {
-            var result = await _hotelService.GetHotelDetailsAsync(hotelId);
+            var result = await _hotelService.GetHotelDetailByIdAsync(hotelId);
             if (result == null)
                 return NotFound();
+            return Ok(result);
+        }
+
+        // Otelin detaylarını almak için
+        [HttpGet("hotel-list")]
+        public async Task<IActionResult> GetHotel()
+        {
+            var result = await _hotelService.GetHotelDetailsAsync();
+            if (result == null || !result.Any())
+                return NotFound("No hotels found.");
             return Ok(result);
         }
     }
