@@ -18,5 +18,7 @@ namespace HotelService.Infrastructure.Repository
         DbSet<T> Table { get; }
         Task<T> GetSingleAsync(Expression<Func<T, bool>> method, bool tracking = true);
         Task<int> SaveAsync();
+
+        ValueTask DisposeAsync();
     }
 }

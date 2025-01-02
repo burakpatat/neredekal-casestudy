@@ -16,3 +16,5 @@ D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\bin
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\bin\Debug\net9.0\SharedKernel.pdb
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.csproj.AssemblyReference.cache
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportSe.47690E55.Up2Date
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\bin\Debug\net9.0\EventBus.dll
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\bin\Debug\net9.0\EventBus.pdb

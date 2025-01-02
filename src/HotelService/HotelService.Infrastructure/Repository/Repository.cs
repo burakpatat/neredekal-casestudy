@@ -74,5 +74,10 @@ namespace HotelService.Infrastructure.Repository
         {
             return await _context.Set<T>().FindAsync(id);
         }
+
+        public async ValueTask DisposeAsync()
+        {
+            await _context.DisposeAsync();
+        }
     }
 }

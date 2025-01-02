@@ -1,4 +1,5 @@
 ﻿using HotelService.Application.DTOs;
+using HotelService.Application.Events;
 using HotelService.Application.Mediator.Commands;
 using HotelService.Application.Mediator.Queries;
 using MediatR;
@@ -8,10 +9,12 @@ namespace HotelService.Application.Services
     public class HotelService : IHotelService
     {
         private readonly IMediator _mediator;
+        //private readonly ReportRequestHandler _handler;
 
         public HotelService(IMediator mediator)
         {
             _mediator = mediator;
+            //_handler = handler;
         }
 
         public async Task<HotelDto> CreateHotelAsync(CreateHotelCommand command)
@@ -72,6 +75,13 @@ namespace HotelService.Application.Services
             var query = new GetHotelDetailsQuery();
             return await _mediator.Send(query);
         }
+
+        //public async Task<bool> RequestReport()
+        //{
+        //    var reportId = Guid.NewGuid();
+        //    await _handler.HandleReportRequest(reportId);
+        //    return true;
+        //}
     }
 
 

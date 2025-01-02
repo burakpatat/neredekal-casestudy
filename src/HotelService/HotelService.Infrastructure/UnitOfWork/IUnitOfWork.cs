@@ -2,9 +2,10 @@
 
 namespace HotelService.Infrastructure.UnitOfWork
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IAsyncDisposable
     {
         IRepository<T> GetRepository<T>() where T : class;
+        TRepository GetCustomRepository<TRepository>() where TRepository : class;
         Task<int> SaveChangesAsync();
     }
 }

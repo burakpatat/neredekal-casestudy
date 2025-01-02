@@ -24,15 +24,25 @@ namespace HotelService.Infrastructure.UnitOfWork
             }
             return (IRepository<T>)_repositories[type];
         }
+        public TRepository GetCustomRepository<TRepository>() where TRepository : class
+        {
+            var type = typeof(TRepository);
+            if (!_repositories.ContainsKey(type))
+            {
+                var repositoryInstance = Activator.CreateInstance(type, _context);
+                _repositories[type] = repositoryInstance;
+            }
+            return (TRepository)_repositories[type];
+        }
 
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
         }
 
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
-            _context.Dispose();
+            await _context.DisposeAsync();
         }
     }
 
