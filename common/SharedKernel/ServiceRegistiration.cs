@@ -10,7 +10,8 @@ namespace SharedKernel
         public static IServiceCollection AddSharedKernel(this IServiceCollection services, IConfiguration config)
         {
             services.AddSingleton<IRabbitMqService>(provider => new RabbitMqService(config));
-            services.AddSingleton<IEventBus, RabbitMqEventBus>();
+            services.AddSingleton<IEventBus, RabbitMqEventBus>(provider =>
+            new RabbitMqEventBus(provider.GetRequiredService<IRabbitMqService>(), config));
 
             return services;
         }

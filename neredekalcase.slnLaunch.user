@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "src\\HotelService\\HotelService.API\\HotelService.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "src\\ReportService\\ReportService.API\\ReportService.API.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

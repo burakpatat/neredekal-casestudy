@@ -3,6 +3,7 @@ using AutoMapper;
 using HotelService.Application.Mapping;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SharedKernel;
 using System.Reflection;
 
 namespace HotelService.Application
@@ -20,6 +21,8 @@ namespace HotelService.Application
             });
 
             services.AddScoped(s => config.CreateMapper());
+
+            services.AddSharedKernel(configuration);
         }
     }
 }

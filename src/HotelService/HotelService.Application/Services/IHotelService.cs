@@ -13,6 +13,7 @@ namespace HotelService.Application.Services
         Task<IEnumerable<HotelRepresentativeDto>> GetHotelRepresentativesAsync(Guid hotelId);
         Task<HotelDto> GetHotelDetailByIdAsync(Guid hotelId);
         Task<List<HotelDto>> GetHotelDetailsAsync();
+        Task<SharedKernel.Events.ReportRequestedEvent> StartLocationBasedReportAsync(Guid reportId, string location);
     }
 
 }

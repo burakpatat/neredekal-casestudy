@@ -103,5 +103,18 @@ namespace HotelService.API.Controllers
                 return NotFound("No hotels found.");
             return Ok(result);
         }
+
+        // Konuma göre istatistikleri çıkartan rapor talebi
+        [HttpPost("create-report")]
+        public async Task<IActionResult> CreateReportAsync(string location)
+        {
+            var reportId = Guid.NewGuid();
+            var data = await _hotelService.StartLocationBasedReportAsync(reportId, location);
+            if(data != null)
+            {
+                return Ok(new { ReportId = reportId, Message = "Rapor talebi başarıyla oluşturuldu.", ReportStatu = Enum.GetName(typeof(ReportStatus), data.ReportStatus) });
+            }
+            return BadRequest();    
+        }
     }
 }

@@ -1,20 +1,25 @@
-﻿using HotelService.Application.DTOs;
-using HotelService.Application.Events;
+﻿using EventBus;
+using HotelService.Application.DTOs;
 using HotelService.Application.Mediator.Commands;
 using HotelService.Application.Mediator.Queries;
+using HotelService.Infrastructure.Repository;
+using HotelService.Infrastructure.UnitOfWork;
 using MediatR;
+using SharedKernel.Events;
 
 namespace HotelService.Application.Services
 {
     public class HotelService : IHotelService
     {
         private readonly IMediator _mediator;
-        //private readonly ReportRequestHandler _handler;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IEventBus _eventBus;
 
-        public HotelService(IMediator mediator)
+        public HotelService(IMediator mediator, IUnitOfWork unitOfWork, IEventBus eventBus)
         {
             _mediator = mediator;
-            //_handler = handler;
+            _unitOfWork = unitOfWork;
+            _eventBus = eventBus;
         }
 
         public async Task<HotelDto> CreateHotelAsync(CreateHotelCommand command)
@@ -76,12 +81,31 @@ namespace HotelService.Application.Services
             return await _mediator.Send(query);
         }
 
-        //public async Task<bool> RequestReport()
-        //{
-        //    var reportId = Guid.NewGuid();
-        //    await _handler.HandleReportRequest(reportId);
-        //    return true;
-        //}
+        public async Task<ReportRequestedEvent> StartLocationBasedReportAsync(Guid reportId, string location)
+        {
+            var locations = await _unitOfWork.GetCustomRepository<HotelStatisticsRepository>().GetHotelsGroupedByLocationAsync(location);
+
+            //var locationReports = locations.Select(location => new LocationReportData
+            //{
+            //    Location = location.Location,
+            //    HotelCount = location.HotelCount,
+            //    PhoneCount = location.PhoneCount
+            //}).ToList();
+
+            var reportRequestedEvent = new ReportRequestedEvent
+            {
+                ReportId = reportId,
+                RequestedAt = DateTime.UtcNow,
+                Location = locations.Location,
+                HotelCount = locations.HotelCount,
+                PhoneCount = locations.PhoneCount,
+                ReportStatus = SharedKernel.Enums.ReportStatus.Preparing
+            };
+
+            _eventBus.Publish(reportRequestedEvent);
+
+            return reportRequestedEvent;
+        }
     }
 
 

@@ -4,7 +4,7 @@ namespace HotelService.Infrastructure.Repository
 {
     public interface IHotelStatisticsRepository
     {
-        Task<List<LocationStatistics>> GetHotelsGroupedByLocationAsync();
+        Task<LocationStatistics> GetHotelsGroupedByLocationAsync(string location);
     }
 
     public class LocationStatistics

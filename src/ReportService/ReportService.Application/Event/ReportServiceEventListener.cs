@@ -1,4 +1,5 @@
 ﻿using EventBus;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SharedKernel.Events;
 
@@ -7,12 +8,12 @@ namespace ReportService.Application.Event
     public class ReportServiceEventListener : BackgroundService
     {
         private readonly IEventBus _eventBus;
-        private readonly ReportRequestedEventHandler _eventHandler;
+        private readonly IServiceScopeFactory _serviceScopeFactory;
 
-        public ReportServiceEventListener(IEventBus eventBus, ReportRequestedEventHandler eventHandler)
+        public ReportServiceEventListener(IEventBus eventBus, IServiceScopeFactory serviceScopeFactory)
         {
             _eventBus = eventBus;
-            _eventHandler = eventHandler;
+            _serviceScopeFactory = serviceScopeFactory;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -22,10 +23,14 @@ namespace ReportService.Application.Event
             {
                 if (!stoppingToken.IsCancellationRequested)
                 {
-                    await _eventHandler.Handle(reportEvent);
+                    using var scope = _serviceScopeFactory.CreateScope();
+                    var eventHandler = scope.ServiceProvider.GetRequiredService<ReportRequestedEventHandler>();
+                    await eventHandler.Handle(reportEvent);
                 }
             });
+
             await Task.CompletedTask;
         }
     }
+
 }

@@ -12,7 +12,7 @@ namespace SharedKernel.RabbitMQ
 
         public RabbitMqService(IConfiguration config)
         {
-            var rabbitMqHost = config["RabbitMqHost"];
+            var rabbitMqHost = config["RabbitMq:Host"];
             _connectionFactory = new ConnectionFactory { Uri = new Uri(rabbitMqHost) };
         }
 
@@ -25,25 +25,28 @@ namespace SharedKernel.RabbitMQ
                 var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
                 channel.BasicPublish(exchange: "", routingKey: queueName, basicProperties: null, body: body);
             }
+            await Task.CompletedTask; // Asenkron metodun tamamlandığını belirtmek için
         }
 
-        public async Task ReceiveMessageAsync(string queueName, Func<string, Task> handler, bool durable = true, bool exclusive = false, bool autoDelete = false)
+        public Task ReceiveMessageAsync(string queueName, Func<string, Task> handler, bool durable = true, bool exclusive = false, bool autoDelete = false)
         {
-            using (var connection = _connectionFactory.CreateConnection())
-            using (var channel = connection.CreateModel())
+            var connection = _connectionFactory.CreateConnection();
+            var channel = connection.CreateModel();
+
+            channel.QueueDeclare(queue: queueName, durable: durable, exclusive: exclusive, autoDelete: autoDelete, arguments: null);
+            var consumer = new EventingBasicConsumer(channel);
+
+            consumer.Received += async (model, e) =>
             {
-                channel.QueueDeclare(queue: queueName, durable: durable, exclusive: exclusive, autoDelete: autoDelete, arguments: null);
-                var consumer = new EventingBasicConsumer(channel);
+                var body = e.Body.ToArray();
+                var message = Encoding.UTF8.GetString(body);
+                await handler(message);
+            };
 
-                consumer.Received += async (model, e) =>
-                {
-                    var body = e.Body.ToArray();
-                    var message = Encoding.UTF8.GetString(body);
-                    await handler(message);
-                };
+            channel.BasicConsume(queue: queueName, autoAck: true, consumer: consumer);
 
-                channel.BasicConsume(queue: queueName, autoAck: true, consumer: consumer);
-            }
+            // Task'in bitmesini beklemiyoruz, çünkü bu sürekli çalışan bir işlemdir
+            return Task.CompletedTask;
         }
     }
 }

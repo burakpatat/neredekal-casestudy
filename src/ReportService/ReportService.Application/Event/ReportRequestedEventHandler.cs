@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 using ReportService.Domain.Entities;
-using ReportService.Infrastructure.Persistence;
+using ReportService.Infrastructure.Repository;
 using SharedKernel.Enums;
 using SharedKernel.Events;
 
@@ -8,11 +8,11 @@ namespace ReportService.Application.Event
 {
     public class ReportRequestedEventHandler
     {
-        private readonly MongoDbContext _dbContext;
+        private readonly IRepository<Report> _reportRepository;
 
-        public ReportRequestedEventHandler(MongoDbContext dbContext)
+        public ReportRequestedEventHandler(IRepository<Report> reportRepository)
         {
-            _dbContext = dbContext;
+            _reportRepository = reportRepository;
         }
 
         public async Task Handle(ReportRequestedEvent reportEvent)
@@ -21,22 +21,15 @@ namespace ReportService.Application.Event
             {
                 Id = reportEvent.ReportId,
                 RequestedDate = reportEvent.RequestedAt,
-                Status = ReportStatus.Preparing,
-                LocationReports = reportEvent.Locations.Select(location => new LocationReport
-                {
-                    Id = Guid.NewGuid(),
-                    Location = location.Location,
-                    HotelCount = location.HotelCount,
-                    PhoneCount = location.PhoneCount
-                }).ToList()
+                Status = ReportStatus.Completed,
+                Location = reportEvent.Location,
+                HotelCount = reportEvent.HotelCount,
+                PhoneCount = reportEvent.PhoneCount
             };
 
-            await _dbContext.Reports.InsertOneAsync(report);
-
-            var filter = Builders<Report>.Filter.Eq(r => r.Id, report.Id);
-            var update = Builders<Report>.Update.Set(r => r.Status, ReportStatus.Completed);
-
-            await _dbContext.Reports.UpdateOneAsync(filter, update);
+            // Rapor oluşturma
+            await _reportRepository.CreateAsync(report);
         }
     }
+
 }
