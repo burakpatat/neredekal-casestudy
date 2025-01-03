@@ -20,7 +20,7 @@ Uygulama, **RabbitMQ** kullanarak mikroservisler arasında asenkron veri iletimi
 - **API Gateway**: `Ocelot`
 - **Containerization**: `Docker Compose`
 
-**Domain-Driven-Design**, **Event-Driven-Architecture**, **CQRS**, **Mediator**, **Generic Repository** 
+**Domain-Driven-Design**, **Event-Driven-Architecture**, **CQRS**, **Mediator**, **Generic Repository**, **UnitOfWork** 
 
 #### Çalıştırma
 `docker-compose.yaml` içerisinde yazılan image'ler ile PostgreSQL ve ELK Stack kurulumları yapabilirsiniz, proje de RabbitMQ ve MongoDB **Cloud** tarafında kullanılmaktadır. appsettings.json içinde konfigürasyonlardan bakabilirsiniz.
