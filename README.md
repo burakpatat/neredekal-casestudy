@@ -10,7 +10,7 @@ Mikroservis mimarisi ile yazılan bu proje, **otel yönetimi** ve **raporlama** 
 Uygulama, **RabbitMQ** kullanarak mikroservisler arasında asenkron veri iletimi sağlar. **HotelService**, **ReportService**'e rapor talepleri gönderirken RabbitMQ kullanır ve **ReportService**, gelen talepleri asenkron olarak alıp işler.
 **HotelService**, rapor taleplerini **RabbitMQ**'ya gönderir. Kullanıcı bir rapor talep ettiğinde, **HotelService** bu talebi RabbitMQ kuyruğuna gönderir. Bu işlem, `ReportRequestedEvent` adıyla yapılan bir mesajlaşma ile gerçekleşir.
 
-# Kullanılan Teknolojiler
+#### Kullanılan Teknolojiler
 
 - **Backend Framework**: `.NET Core 9`
 - `MongoDB`: ReportService
