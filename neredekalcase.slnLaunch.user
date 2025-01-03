@@ -1,6 +1,6 @@
 [
   {
-    "Name": "New Profile",
+    "Name": "Neredekal",
     "Projects": [
       {
         "Path": "src\\HotelService\\HotelService.API\\HotelService.API.csproj",
@@ -8,6 +8,10 @@
       },
       {
         "Path": "src\\ReportService\\ReportService.API\\ReportService.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "src\\Gateway\\Gateway.API\\Gateway.API.csproj",
         "Action": "Start"
       }
     ]

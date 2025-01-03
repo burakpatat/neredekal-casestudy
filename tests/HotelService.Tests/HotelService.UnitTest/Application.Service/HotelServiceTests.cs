@@ -1,6 +1,8 @@
-﻿using HotelService.Application.DTOs;
+﻿using EventBus;
+using HotelService.Application.DTOs;
 using HotelService.Application.Mediator.Commands;
 using HotelService.Application.Mediator.Queries;
+using HotelService.Infrastructure.UnitOfWork;
 using MediatR;
 using Moq;
 
@@ -9,12 +11,16 @@ namespace HotelService.UnitTest.Application.Service
     public class HotelServiceTests
     {
         private readonly Mock<IMediator> _mediatorMock;
+        private readonly Mock<IUnitOfWork> _unitofworkMock;
+        private readonly Mock<IEventBus> _eventbusMock;
         private readonly HotelService.Application.Services.HotelService _hotelService;
 
         public HotelServiceTests()
         {
             _mediatorMock = new Mock<IMediator>();
-            _hotelService = new HotelService.Application.Services.HotelService(_mediatorMock.Object);
+            _unitofworkMock = new Mock<IUnitOfWork>();
+            _eventbusMock = new Mock<IEventBus>();
+            _hotelService = new HotelService.Application.Services.HotelService(_mediatorMock.Object, _unitofworkMock.Object, _eventbusMock.Object);
         }
 
         [Fact]

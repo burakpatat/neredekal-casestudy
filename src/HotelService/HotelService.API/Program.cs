@@ -1,9 +1,8 @@
 using HotelService.Application;
 using HotelService.Application.Services;
 using HotelService.Infrastructure.Persistence;
-using HotelService.Infrastructure.Repository;
-using HotelService.Infrastructure.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,12 +16,36 @@ builder.Services.AddOpenApi();
 //service registiration
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
 builder.Services.AddApplicationService(builder.Configuration);
 
 builder.Services.AddScoped<IHotelService, HotelService.Application.Services.HotelService>();
+
+builder.Services.AddSwaggerGen(opt =>
+{
+    opt.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "patat",
+        Title = "Hotel Service",
+        Contact = new OpenApiContact
+        {
+            Name = "Burak Patat",
+            Email = "burak@patat.co",
+            Url = new Uri("https://patat.co/")
+        },
+        Description = "NeredeKal Case Study"
+    });
+});
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials().WithOrigins("http://localhost:5284");
+    });
+});
 
 var app = builder.Build();
 
@@ -39,13 +62,20 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCors("CorsPolicy");
+
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<HotelDbContext>();
     db.Database.Migrate();
 }
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hotel Service");
+});
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
