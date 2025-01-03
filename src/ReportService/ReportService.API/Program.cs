@@ -4,6 +4,7 @@ using ReportService.Application.Event;
 using ReportService.Application.Services;
 using ReportService.Infrastructure.Persistence;
 using SharedKernel;
+using SharedKernel.ElasticSearch;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 // RabbitMQ and EventBus
-builder.Services.AddSharedKernel(builder.Configuration);
+builder.Services.AddSharedKernel(builder.Configuration, builder.Host);
 
 // Hosted Services / Event Handlers
 builder.Services.AddSingleton<IHostedService, ReportServiceEventListener>();
@@ -71,6 +72,8 @@ app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Report Service");
 });
+
+app.UseSharedLogging();
 
 //app.UseHttpsRedirection();
 

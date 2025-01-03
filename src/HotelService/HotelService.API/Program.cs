@@ -2,8 +2,11 @@ using HotelService.Application;
 using HotelService.Application.Services;
 using HotelService.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
+using SharedKernel;
+using SharedKernel.ElasticSearch;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +18,8 @@ builder.Services.AddOpenApi();
 
 //service registiration
 builder.Services.AddInfrastructureServices(builder.Configuration);
+
+builder.Services.AddSharedKernel(builder.Configuration, builder.Host);
 
 builder.Services.AddApplicationService(builder.Configuration);
 
@@ -74,6 +79,8 @@ app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hotel Service");
 });
+
+app.UseSharedLogging();//elk
 
 //app.UseHttpsRedirection();
 

@@ -1,0 +1,2 @@
+﻿{"@timestamp":"2025-01-03T16:40:19.5741030+03:00","level":"Information","messageTemplate":"{@Message}","message":"\"Incoming Request: GET /api/Report/reports\"","fields":{"Message":"Incoming Request: GET /api/Report/reports"}}
+{"@timestamp":"2025-01-03T16:40:21.2391987+03:00","level":"Information","messageTemplate":"{@Message}","message":"\"Outgoing Response: 200\"","fields":{"Message":"Outgoing Response: 200"}}

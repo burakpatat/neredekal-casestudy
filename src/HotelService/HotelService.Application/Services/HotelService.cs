@@ -5,6 +5,7 @@ using HotelService.Application.Mediator.Queries;
 using HotelService.Infrastructure.Repository;
 using HotelService.Infrastructure.UnitOfWork;
 using MediatR;
+using SharedKernel.ElasticSearch;
 using SharedKernel.Events;
 
 namespace HotelService.Application.Services
@@ -14,22 +15,30 @@ namespace HotelService.Application.Services
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IEventBus _eventBus;
+        private readonly ILoggingService _logger;
 
-        public HotelService(IMediator mediator, IUnitOfWork unitOfWork, IEventBus eventBus)
+        public HotelService(IMediator mediator, IUnitOfWork unitOfWork, IEventBus eventBus, ILoggingService loggingService)
         {
             _mediator = mediator;
             _unitOfWork = unitOfWork;
             _eventBus = eventBus;
+            _logger = loggingService;
         }
 
         public async Task<HotelDto> CreateHotelAsync(CreateHotelCommand command)
         {
+            _logger.LogInformation("CreateHotel called", command);
+
             var hotelDto = await _mediator.Send(command);
+
+            _logger.LogInformation("CreateHotel completed", hotelDto);
             return hotelDto;
         }
 
         public async Task<HotelRepresentativeDto> AddHotelRepresentativeAsync(Guid hotelId, HotelRepresentativeDto representative)
         {
+            _logger.LogInformation("AddHotelRepresentative", new { hotelId, representative });
+
             var command = new AddHotelRepresentativeCommand
             {
                 HotelId = hotelId,
@@ -48,13 +57,24 @@ namespace HotelService.Application.Services
 
         public async Task<HotelContactInfoDto> AddHotelContactInfoAsync(Guid hotelId, HotelContactInfoDto contactInfo)
         {
-            var command = new AddHotelContactInfoCommand
+            _logger.LogInformation("AddHotelContactInfo", new { hotelId, contactInfo });
+            try
             {
-                HotelId = hotelId,
-                Type = contactInfo.Type,
-                Value = contactInfo.Value
-            };
-            return await _mediator.Send(command);
+                var command = new AddHotelContactInfoCommand
+                {
+                    HotelId = hotelId,
+                    Type = contactInfo.Type,
+                    Value = contactInfo.Value
+                };
+                var result = await _mediator.Send(command);
+                _logger.LogInformation("AddHotelContactInfo", result);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error in AddHotelContactInfo", ex, new { hotelId, contactInfo });
+                throw;
+            }
         }
 
         public async Task<bool> RemoveHotelContactInfoAsync(Guid hotelId, int contactInfoType)
@@ -83,28 +103,31 @@ namespace HotelService.Application.Services
 
         public async Task<ReportRequestedEvent> StartLocationBasedReportAsync(Guid reportId, string location)
         {
-            var locations = await _unitOfWork.GetCustomRepository<HotelStatisticsRepository>().GetHotelsGroupedByLocationAsync(location);
-
-            //var locationReports = locations.Select(location => new LocationReportData
-            //{
-            //    Location = location.Location,
-            //    HotelCount = location.HotelCount,
-            //    PhoneCount = location.PhoneCount
-            //}).ToList();
-
-            var reportRequestedEvent = new ReportRequestedEvent
+            _logger.LogInformation("Create Report called", new { reportId, location });
+            try
             {
-                ReportId = reportId,
-                RequestedAt = DateTime.UtcNow,
-                Location = locations.Location,
-                HotelCount = locations.HotelCount,
-                PhoneCount = locations.PhoneCount,
-                ReportStatus = SharedKernel.Enums.ReportStatus.Preparing
-            };
+                var locations = await _unitOfWork.GetCustomRepository<HotelStatisticsRepository>().GetHotelsGroupedByLocationAsync(location);
 
-            _eventBus.Publish(reportRequestedEvent);
+                var reportRequestedEvent = new ReportRequestedEvent
+                {
+                    ReportId = reportId,
+                    RequestedAt = DateTime.UtcNow,
+                    Location = locations.Location,
+                    HotelCount = locations.HotelCount,
+                    PhoneCount = locations.PhoneCount,
+                    ReportStatus = SharedKernel.Enums.ReportStatus.Preparing
+                };
 
-            return reportRequestedEvent;
+                _eventBus.Publish(reportRequestedEvent);
+
+                _logger.LogInformation("Report completed - Event Publish", reportRequestedEvent);
+                return reportRequestedEvent;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error in Created Report", ex, new { reportId, location });
+                throw;
+            }
         }
     }
 

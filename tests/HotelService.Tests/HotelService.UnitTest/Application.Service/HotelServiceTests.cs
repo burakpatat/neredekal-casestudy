@@ -5,6 +5,7 @@ using HotelService.Application.Mediator.Queries;
 using HotelService.Infrastructure.UnitOfWork;
 using MediatR;
 using Moq;
+using SharedKernel.ElasticSearch;
 
 namespace HotelService.UnitTest.Application.Service
 {
@@ -14,13 +15,15 @@ namespace HotelService.UnitTest.Application.Service
         private readonly Mock<IUnitOfWork> _unitofworkMock;
         private readonly Mock<IEventBus> _eventbusMock;
         private readonly HotelService.Application.Services.HotelService _hotelService;
+        private readonly Mock<ILoggingService> _loggerMock;
 
         public HotelServiceTests()
         {
             _mediatorMock = new Mock<IMediator>();
             _unitofworkMock = new Mock<IUnitOfWork>();
             _eventbusMock = new Mock<IEventBus>();
-            _hotelService = new HotelService.Application.Services.HotelService(_mediatorMock.Object, _unitofworkMock.Object, _eventbusMock.Object);
+            _loggerMock = new Mock<ILoggingService>();
+            _hotelService = new HotelService.Application.Services.HotelService(_mediatorMock.Object, _unitofworkMock.Object, _eventbusMock.Object, _loggerMock.Object);
         }
 
         [Fact]

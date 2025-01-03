@@ -199,8 +199,8 @@ D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_fram
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Xml.XmlSerializer.bq97vodilp.wasm
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Xml.XPath.k51e820493.wasm
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Xml.XPath.XDocument.0ke5udk43d.wasm
-D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\WebUI.Client.g5jufsmk58.pdb
-D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\WebUI.Client.xe9f19nlck.wasm
+D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\WebUI.Client.r70g50kk47.pdb
+D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\WebUI.Client.lnu52hs4oh.wasm
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\WindowsBase.377bly7twj.wasm
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Resources.Writer.8cba876owh.wasm.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Net.NameResolution.69c8qqjvbw.wasm.gz
@@ -347,7 +347,7 @@ D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_fram
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Runtime.InteropServices.RuntimeInformation.efuomfulte.wasm.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Formats.Tar.8xxxaqbsnj.wasm.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Reflection.Emit.ILGeneration.w67sd2c79u.wasm.gz
-D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\WebUI.Client.g5jufsmk58.pdb.gz
+D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\WebUI.Client.r70g50kk47.pdb.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.IO.UnmanagedMemoryStream.mysczqf347.wasm.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Xml.XPath.XDocument.0ke5udk43d.wasm.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\dotnet.runtime.js.map.gz
@@ -395,7 +395,7 @@ D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_fram
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Xml.082i3gm7hm.wasm.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Globalization.0phgw2xrn5.wasm.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Runtime.InteropServices.JavaScript.ip8pk4p9ds.wasm.gz
-D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\WebUI.Client.xe9f19nlck.wasm.gz
+D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\WebUI.Client.lnu52hs4oh.wasm.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Threading.39d9zoj3c0.wasm.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Net.WebClient.qzr3f3e20s.wasm.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\bin\Debug\net9.0\wwwroot\_framework\System.Linq.Expressions.lyb8wix427.wasm.gz
@@ -1020,9 +1020,9 @@ D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\compressed\pr
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\compressed\n875qtoqja-tjcz0u77k5.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\compressed\b4wzufl6ck-tptq2av103.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\compressed\lpzn7sumin-lfu7j35m59.gz
-D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\compressed\y3cgb0a187-xe9f19nlck.gz
-D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\compressed\ph1tpteda1-g5jufsmk58.gz
-D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\compressed\yw3hqdlhs9-u0x780y4hg.gz
+D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\compressed\y3cgb0a187-lnu52hs4oh.gz
+D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\compressed\ph1tpteda1-r70g50kk47.gz
+D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\compressed\yw3hqdlhs9-1b4bbpcc3q.gz
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\staticwebassets.build.json
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\staticwebassets.development.json
 D:\Github\neredekal-casestudy\src\UI\WebUI.Client\obj\Debug\net9.0\staticwebassets.build.endpoints.json

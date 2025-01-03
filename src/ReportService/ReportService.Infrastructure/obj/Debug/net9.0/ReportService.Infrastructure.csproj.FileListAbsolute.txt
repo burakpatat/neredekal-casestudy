@@ -1,3 +1,9 @@
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.csproj.AssemblyReference.cache
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.AssemblyInfoInputs.cache
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.AssemblyInfo.cs
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.sourcelink.json
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\bin\Debug\net9.0\ReportService.Infrastructure.deps.json
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\bin\Debug\net9.0\ReportService.Infrastructure.dll
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\bin\Debug\net9.0\ReportService.Infrastructure.pdb
@@ -7,12 +13,6 @@ D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\bin
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\bin\Debug\net9.0\ReportService.Domain.pdb
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\bin\Debug\net9.0\EventBus.pdb
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\bin\Debug\net9.0\SharedKernel.pdb
-D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.csproj.AssemblyReference.cache
-D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.AssemblyInfoInputs.cache
-D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.AssemblyInfo.cs
-D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.csproj.CoreCompileInputs.cache
-D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.sourcelink.json
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportSe.47690E55.Up2Date
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\ReportService.Infrastructure.dll
 D:\Github\neredekal-casestudy\src\ReportService\ReportService.Infrastructure\obj\Debug\net9.0\refint\ReportService.Infrastructure.dll
